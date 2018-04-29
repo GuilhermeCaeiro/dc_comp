@@ -1,6 +1,7 @@
 import random
 import math
 import numpy as np
+import copy
 
 class Discriminator:
     def __init__(self, input_class, input_length, tupple_size):
@@ -65,20 +66,21 @@ class Wisard:
                 if expected_output_list[i] not in input_classes:
                     input_classes[expected_output_list[i]] = []
                 # shuffles input list
-                #print(input_list[i])
+                input_item = copy.deepcopy(input_list[i])
+                #print("Original pattern: ", input_item)
                 random.seed(self.seed)
-                #print(random.shuffle(input_list[i]))
-                random.shuffle(input_list[i])
-                #print(input_list[i])
-                input_classes[expected_output_list[i]].append(input_list[i])
+                random.shuffle(input_item)
+                #print("Shuffled pattern: ", input_item)
+                input_classes[expected_output_list[i]].append(input_item)
 
             return input_classes
         elif mode == "prediction":
-            input_item = input_list[0]
-            #print("input", input_item)
+        	#input_item = input_list[0]
+            input_item = copy.deepcopy(input_list[0])
+            #print("Original pattern: ", input_item)
             random.seed(self.seed)
             random.shuffle(input_item)
-            #print("shuffled", input_item)
+            #print("Suffled pattern: ", input_item)
             return input_item
         else:
             return None #raising an error is better

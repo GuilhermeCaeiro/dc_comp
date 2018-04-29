@@ -1,0 +1,67 @@
+71642
+In-sample performance:  0.491830514059754
+17935
+Expected out-sample performance:  0.49250329525483305
+
+
+71642
+In-sample performance:  0.491830514059754
+17935
+Expected out-sample performance:  0.49250329525483305
+
+71642
+In-sample performance:  0.491830514059754
+17935
+Expected out-sample performance:  0.49250329525483305
+
+71642
+In-sample performance:  0.491830514059754
+17935
+Expected out-sample performance:  0.49250329525483305
+
+
+Treinando apenas com 100 exemplos, classes treinadas na ordem ['1', '0']:
+
+96611
+In-sample performance:  0.6632455514059754
+24101
+Expected out-sample performance:  0.6618244727592267
+
+100 exemplos, considerando prefixo do professor, mantendo a distribuicao do datase4t:
+
+86344
+In-sample performance:  0.5927614235500879
+21552
+Expected out-sample performance:  0.5918277680140598
+
+86344
+In-sample performance:  0.5927614235500879
+21552
+Expected out-sample performance:  0.5918277680140598
+
+Desconsiderando o prefixo do professor:
+
+96611
+In-sample performance:  0.6632455514059754
+24101
+Expected out-sample performance:  0.6618244727592267
+
+
+Threinado na ordem ['0', '1'], sem prefixo do professor, 100 primeiros exemplos:
+58977
+In-sample performance:  0.4048838422671353
+14735
+Expected out-sample performance:  0.40462983304042177
+
+Mantendo a distribuicao do dataset, adicionando o prefixo do professor:
+
+56239
+In-sample performance:  0.3860871594903339
+14156
+Expected out-sample performance:  0.38873022847100175
+
+
+Eh possivel verificar que a adicao do profixo eh prejudicial ao treino.
+
+
+

@@ -29,5 +29,43 @@ print("\n\n\n")
 
 for pattern in test_set:
     print("Evaluating pattern ", pattern)
-    print("Result: ", wann.predict(pattern[0]), "\n")
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+for pattern in test_set:
+    print("Evaluating pattern ", pattern)
+    print("Result: ", wann.predict(pattern[0]), "Expected: ", pattern[1], "\n")
+
 
