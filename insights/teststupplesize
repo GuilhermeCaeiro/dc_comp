@@ -1,0 +1,345 @@
+Tuple size 1
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  95627
+Predicted wrongly:  50037
+Predicted zeros:  39653
+Predicted ones:  106011
+Zeros correct:  5857
+Ones correct:  89770
+Zeros wrong:  33796
+Ones Wrong:  16241
+In-sample performance:  0.6564902789982425
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  23903
+Predicted wrongly:  12513
+Predicted zeros:  9847
+Predicted ones:  26569
+Zeros correct:  1485
+Ones correct:  22418
+Zeros wrong:  8362
+Ones Wrong:  4151
+Expected out-sample performance:  0.65638730228471
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+
+
+Tuple size 2
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  95627
+Predicted wrongly:  50037
+Predicted zeros:  39653
+Predicted ones:  106011
+Zeros correct:  5857
+Ones correct:  89770
+Zeros wrong:  33796
+Ones Wrong:  16241
+In-sample performance:  0.6564902789982425
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  23903
+Predicted wrongly:  12513
+Predicted zeros:  9847
+Predicted ones:  26569
+Zeros correct:  1485
+Ones correct:  22418
+Zeros wrong:  8362
+Ones Wrong:  4151
+Expected out-sample performance:  0.65638730228471
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+Tuple size 4
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  93455
+Predicted wrongly:  52209
+Predicted zeros:  42625
+Predicted ones:  103039
+Zeros correct:  6257
+Ones correct:  87198
+Zeros wrong:  36368
+Ones Wrong:  15841
+In-sample performance:  0.6415792508787346
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  23395
+Predicted wrongly:  13021
+Predicted zeros:  10605
+Predicted ones:  25811
+Zeros correct:  1610
+Ones correct:  21785
+Zeros wrong:  8995
+Ones Wrong:  4026
+Expected out-sample performance:  0.6424373901581723
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+
+Tuple size 7
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  88874
+Predicted wrongly:  56790
+Predicted zeros:  49472
+Predicted ones:  96192
+Zeros correct:  7390
+Ones correct:  81484
+Zeros wrong:  42082
+Ones Wrong:  14708
+In-sample performance:  0.6101301625659051
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  22188
+Predicted wrongly:  14228
+Predicted zeros:  12348
+Predicted ones:  24068
+Zeros correct:  1878
+Ones correct:  20310
+Zeros wrong:  10470
+Ones Wrong:  3758
+Expected out-sample performance:  0.6092926186291739
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+
+Tuple size 10
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  96843
+Predicted wrongly:  48821
+Predicted zeros:  39055
+Predicted ones:  106609
+Zeros correct:  6166
+Ones correct:  90677
+Zeros wrong:  32889
+Ones Wrong:  15932
+In-sample performance:  0.6648382579086116
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  24292
+Predicted wrongly:  12124
+Predicted zeros:  9640
+Predicted ones:  26776
+Zeros correct:  1576
+Ones correct:  22716
+Zeros wrong:  8064
+Ones Wrong:  4060
+Expected out-sample performance:  0.6670694200351494
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+
+Tuple size 25
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  79994
+Predicted wrongly:  65670
+Predicted zeros:  61326
+Predicted ones:  84338
+Zeros correct:  8877
+Ones correct:  71117
+Zeros wrong:  52449
+Ones Wrong:  13221
+In-sample performance:  0.5491679481546573
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  20029
+Predicted wrongly:  16387
+Predicted zeros:  15217
+Predicted ones:  21199
+Zeros correct:  2233
+Ones correct:  17796
+Zeros wrong:  12984
+Ones Wrong:  3403
+Expected out-sample performance:  0.5500054920913884
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+Tuple size 50
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  103992
+Predicted wrongly:  41672
+Predicted zeros:  12800
+Predicted ones:  119907
+Zeros correct:  2179
+Ones correct:  101813
+Zeros wrong:  10621
+Ones Wrong:  18094
+In-sample performance:  0.7139169595782073
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  25895
+Predicted wrongly:  10521
+Predicted zeros:  3176
+Predicted ones:  30023
+Zeros correct:  536
+Ones correct:  25359
+Zeros wrong:  2640
+Ones Wrong:  4664
+Expected out-sample performance:  0.711088532513181
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+Tuple size 75
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  53692
+Predicted wrongly:  91972
+Predicted zeros:  30109
+Predicted ones:  58727
+Zeros correct:  4517
+Ones correct:  49175
+Zeros wrong:  25592
+Ones Wrong:  9552
+In-sample performance:  0.3686017135325132
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  13449
+Predicted wrongly:  22967
+Predicted zeros:  7496
+Predicted ones:  14692
+Zeros correct:  1185
+Ones correct:  12264
+Zeros wrong:  6311
+Ones Wrong:  2428
+Expected out-sample performance:  0.36931568541300525
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+Tuple size 100
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  40174
+Predicted wrongly:  105490
+Predicted zeros:  16522
+Predicted ones:  44726
+Zeros correct:  2660
+Ones correct:  37514
+Zeros wrong:  13862
+Ones Wrong:  7212
+In-sample performance:  0.2757990992970123
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  9973
+Predicted wrongly:  26443
+Predicted zeros:  4080
+Predicted ones:  11124
+Zeros correct:  670
+Ones correct:  9303
+Zeros wrong:  3410
+Ones Wrong:  1821
+Expected out-sample performance:  0.27386313708260107
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
+Tuple size 350
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 84
+Number of training samples for class 0: 16
+
+Number of observations:  145664
+Predicted correctly:  199
+Predicted wrongly:  145465
+Predicted zeros:  67
+Predicted ones:  204
+Zeros correct:  19
+Ones correct:  180
+Zeros wrong:  48
+Ones Wrong:  24
+In-sample performance:  0.0013661577328646748
+Ones distribution:  0.8482947056239016
+Ones:  123566 Zeros:  -22098
+
+
+Number of observations:  36416
+Predicted correctly:  48
+Predicted wrongly:  36368
+Predicted zeros:  11
+Predicted ones:  51
+Zeros correct:  4
+Ones correct:  44
+Zeros wrong:  7
+Ones Wrong:  7
+Expected out-sample performance:  0.0013181019332161687
+Ones distribution:  0.8452328646748682
+Ones:  30780 Zeros:  -5636
+
