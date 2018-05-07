@@ -26,14 +26,9 @@ class Discriminator:
             address = "".join(str(i) for i in address) # address becomes a string
 
             if address not in self.memory[i]:
-                #print("Memory Created")
                 self.memory[i][address] = 1
             elif address in self.memory[i] and self.bleaching:
-                #print("Memory Incremented")
                 self.memory[i][address] = self.memory[i][address] + 1
-                #pass
-
-        #print("Writting pattern in memory.", self.memory)
             
     def evaluate(self, pattern, bleaching_threshold = 0):
         score = 0
@@ -48,10 +43,8 @@ class Discriminator:
 
             if i in self.memory and address in self.memory[i]:
                 if self.bleaching and self.memory[i][address] >= bleaching_threshold:
-                    print("Threshold: ", bleaching_threshold, "Somado: ", 1)
                     score = score + 1
                 elif self.bleaching and self.memory[i][address] < bleaching_threshold:
-                    print("Threshold: ", bleaching_threshold, "Somado: ", 0)
                     continue
                 else:
                     score = score + 1
@@ -69,7 +62,6 @@ class Wisard:
         self.discriminators = []
 
     def processInput(self, mode, input_list, expected_output_list = []):
-        #print("Processing Input. Mode: " + mode)
         # separates classes
         input_classes = {}
 
@@ -77,22 +69,22 @@ class Wisard:
             for i in range(len(input_list)):
                 if expected_output_list[i] not in input_classes:
                     input_classes[expected_output_list[i]] = []
+                
                 # shuffles input list
                 input_item = copy.deepcopy(input_list[i])
-                #print("Original pattern: ", input_item)
+                
                 random.seed(self.seed)
                 random.shuffle(input_item)
-                #print("Shuffled pattern: ", input_item)
+
                 input_classes[expected_output_list[i]].append(input_item)
 
             return input_classes
         elif mode == "prediction":
-            #input_item = input_list[0]
             input_item = copy.deepcopy(input_list[0])
-            #print("Original pattern: ", input_item)
+
             random.seed(self.seed)
             random.shuffle(input_item)
-            #print("Suffled pattern: ", input_item)
+            
             return input_item
         else:
             return None #raising an error is better
@@ -100,7 +92,6 @@ class Wisard:
     def train(self, input_list, expected_output_list):
         input_classes = self.processInput("trainning", input_list, expected_output_list)
         number_of_classes = len(input_classes)
-        #print(input_classes)
         
         print("Number of classes being trained: " + str(number_of_classes))
         print(input_classes.keys())
@@ -128,12 +119,10 @@ class Wisard:
 
         while not result_achieved:
             predicted_classes = [{"discriminator": None, "score": 0}]
-            #predicted_class = {"class": "", "score": 0}
 
             for discriminator in discriminators_to_evaluate:
-                print("Evaluating with discriminator for class \"" + discriminator.input_class + "\".")
                 score = discriminator.evaluate(processed_input, current_threshold)
-                print("Score for discriminator", discriminator.input_class, ": ", score)
+
                 if score > predicted_classes[0]["score"]:
                     predicted_classes = [{"discriminator": discriminator, "score": score}]
                 elif score == predicted_classes[0]["score"]:
@@ -141,14 +130,10 @@ class Wisard:
 
 
             if not self.bleaching:
-                print("Nada de Bleaching, sefinir!")
                 result_achieved = True
             elif self.bleaching and len(predicted_classes) > 1:
-                print("Yahho!", len(predicted_classes))
                 if predicted_classes[0]["score"] == 1:
-                    print("Score 1")
                     result_achieved = True
-
 
                 current_threshold = current_threshold + 1
 
@@ -157,7 +142,6 @@ class Wisard:
                     discriminators_to_evaluate.append(predicted_class["discriminator"])
 
             elif self.bleaching and len(predicted_classes) == 1:
-                print("Pimba!")
                 result_achieved = True
             else:
                 print("Error predicting class.")
