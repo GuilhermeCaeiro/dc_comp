@@ -7,6 +7,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
+import time
 from Wisard import Wisard
 
 
@@ -325,7 +326,10 @@ def evaluate_performance(wann, test_data_combined):
     print("Ones correct: ", ones_correct)
     print("Zeros wrong: ", zeros_wrong)
     print("Ones Wrong: ", ones_wrong)
-    return correct_predictions
+    return correct_predictions, [
+        len(test_data_combined), correct_predictions, wrong_predictions, zeros_predicted, ones_predicted,
+        zeros_correct, ones_correct, zeros_wrong, ones_wrong
+    ]
 
 #Evaluates Firminos's wisard implementation
 def evaluate_performance2(w, test_data_combined):
@@ -373,13 +377,29 @@ def evaluate_performance2(w, test_data_combined):
     print("Ones correct: ", ones_correct)
     print("Zeros wrong: ", zeros_wrong)
     print("Ones Wrong: ", ones_wrong)
-    return correct_predictions
+    return correct_predictions, [
+        len(test_data_combined), correct_predictions, wrong_predictions, zeros_predicted, ones_predicted,
+        zeros_correct, ones_correct, zeros_wrong, ones_wrong
+    ]
 
 
 # In[6]:
 
 
-def experiment(training_set_distribuitions, tuple_sizes, bleaching = False):
+def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False]):
+    output_file = "insights/results_experiment07052018.csv"
+    file = open(output_file, "w")
+    file.write("data_distribution;tuple_size;bleaching_active;total_training_data;total_correct_training;" +
+               "percent_correct_training;total_approved_training;correctly_approved_training;wrongly_approved_training;" +
+               "percent_approved_correctly_training;total_reproved_training;correctly_reproved_training;" +
+               "wrongly_reproved_training;percent_reproved_correctly_training;total_test_data;total_correct_test;" +
+               "percent_correct_test;total_approved_test;correctly_approved_test;wrongly_approved_test;" +
+               "percent_approved_correctly_test;total_reproved_test;correctly_reproved_test;" +
+               "wrongly_reproved_test;percent_reproved_correctly_test;\n"
+              )
+    file.close()
+    
+    
     for training_set_distribuition in training_set_distribuitions:
         print("\nTraining with a training set distribution of ", 
               training_set_distribuition[0], training_set_distribuition[1],
@@ -388,19 +408,96 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching = False):
         
         for a_tuple_size in tuple_sizes:
             print("Training with a tupple of size: ", a_tuple_size)
-            print("Bleaching is set to: ", bleaching, "\n")
             
-            wann = train(training_input, expected_output, a_tuple_size, bleaching)
-            
-            # Evaluates Guilherme's wisard implementation
-            print("In-sample performance: ", float(evaluate_performance(wann, training_combined)) / float(len(training_combined)))
-            print("Ones distribution: ", float(training_set["project_is_approved"].sum()) / float(len(training_set["project_is_approved"])))
-            print("Ones: ", training_set["project_is_approved"].sum(), "Zeros: ", training_set["project_is_approved"].sum() - len(training_set["project_is_approved"]))
-            print("\n")
-            print("Expected out-sample performance: ", float(evaluate_performance(wann, test_combined)) / float(len(test_combined)))
-            print("Ones distribution: ", float(test_set["project_is_approved"].sum()) / float(len(test_set["project_is_approved"])))
-            print("Ones: ", test_set["project_is_approved"].sum(), "Zeros: ", (test_set["project_is_approved"].sum() - len(test_set["project_is_approved"])), "\n\n")
-            
+            for bleaching in bleaching_mode:
+                print("Bleaching is set to: ", bleaching, "\n")
+
+                wann = train(training_input, expected_output, a_tuple_size, bleaching)
+
+                in_sample_performance, in_sample_additional_info =  evaluate_performance(wann, training_combined)
+                
+                # Evaluates Guilherme's wisard implementation
+                print("In-sample performance: ", float(in_sample_performance) / float(len(training_combined)))
+                print("Ones distribution: ", float(training_set["project_is_approved"].sum()) / float(len(training_set["project_is_approved"])))
+                print("Ones: ", training_set["project_is_approved"].sum(), "Zeros: ", training_set["project_is_approved"].sum() - len(training_set["project_is_approved"]))
+                print("\n")
+                
+                out_sample_performance, out_sample_additional_info =  evaluate_performance(wann, test_combined)
+                
+                print("Expected out-sample performance: ", float(out_sample_performance) / float(len(test_combined)))
+                print("Ones distribution: ", float(test_set["project_is_approved"].sum()) / float(len(test_set["project_is_approved"])))
+                print("Ones: ", test_set["project_is_approved"].sum(), "Zeros: ", (test_set["project_is_approved"].sum() - len(test_set["project_is_approved"])), "\n\n")
+                
+                line = ""
+                line_contents = [
+                    # training / test
+                    str(training_set_distribuition[0]) + "/" + str(training_set_distribuition[1]) + ";",
+                    # tuple size
+                    str(a_tuple_size) + ";",
+                    # bleaching active or not
+                    str(bleaching) + ";",
+                    
+                    # total traning observations
+                    str(training_set_distribuition[0] + training_set_distribuition[1]) + ";",
+                    # total of correct prediction in the training dataset
+                    str(in_sample_performance) + ";",
+                    # percentage of right answers
+                    str(float(in_sample_performance) / float(len(training_combined))) + ";",
+                    # total approved in the training dataset
+                    str(training_set["project_is_approved"].sum()) + ";",
+                    # total approved correctly predicted in the training dataset
+                    str(in_sample_additional_info[6]) + ";",
+                    # total approved wrongly predicted in the training dataset
+                    str(in_sample_additional_info[8]) + ";",
+                    # percentage of approved projects predicted correctly in the training dataset
+                    str(float(in_sample_additional_info[6]) / float(training_set["project_is_approved"].sum())) + ";",
+                    # total reproved in the training dataset
+                    str((training_set["project_is_approved"].sum() - len(training_set["project_is_approved"])) * -1) + ";",
+                    # total reproved correctly predicted in the training dataset
+                    str(in_sample_additional_info[5]) + ";",
+                    # total reproved wrongly predicted in the training dataset
+                    str(in_sample_additional_info[7]) + ";",
+                    # percentage of reproved projects predicted correctly in the training dataset
+                    str(float(in_sample_additional_info[5]) / float((training_set["project_is_approved"].sum() - len(training_set["project_is_approved"])) * -1)) + ";",
+
+                    
+                    # total test observations
+                    str(len(test_set["project_is_approved"])) + ";",
+                    # total of correct prediction in the test dataset
+                    str(out_sample_performance) + ";",
+                    # percentage of right answers
+                    str(float(out_sample_performance) / float(len(test_combined))) + ";",
+                    # total approved in the test dataset
+                    str(test_set["project_is_approved"].sum()) + ";",
+                    # total approved correctly predicted in the test dataset
+                    str(out_sample_additional_info[6]) + ";",
+                    # total approved wrongly predicted in the test dataset
+                    str(out_sample_additional_info[8]) + ";",
+                    # percentage of approved projects predicted correctly in the test dataset
+                    str(float(out_sample_additional_info[6]) / float(test_set["project_is_approved"].sum())) + ";",
+                    # total reproved in the test dataset
+                    str((test_set["project_is_approved"].sum() - len(test_set["project_is_approved"])) * -1) + ";",
+                    # total reproved correctly predicted in the training dataset
+                    str(out_sample_additional_info[5]) + ";",
+                    # total reproved wrongly predicted in the training dataset
+                    str(out_sample_additional_info[7]) + ";",
+                    # percentage of reproved projects predicted correctly in the training dataset
+                    str(float(out_sample_additional_info[5]) / float((test_set["project_is_approved"].sum() - len(test_set["project_is_approved"])) * -1)) + ";",
+                    
+                    "\n",
+                    #str() + ";",
+                ]
+
+                for content in line_contents:
+                    #print(content)
+                    line = line + content
+
+                print(line)
+                
+                file = open(output_file, "a+")
+                file.write(line)
+                file.close()
+
         
     
 
@@ -408,8 +505,8 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching = False):
 # In[7]:
 
 
-tuple_sizes = [1, 2, 4, 5, 7, 10, 25, 50]
-training_set_distribuitions = [[10, 10], [50, 50], [75, 75], [86, 14]]
+tuple_sizes = [1, 2, 4, 5, 7, 10, 20, 25, 30, 50, 100]
+training_set_distribuitions = [[10, 10], [20, 20], [30, 30], [50, 50], [75, 75], [86, 14]]
 
-experiment(training_set_distribuitions, tuple_sizes)
+experiment(training_set_distribuitions, tuple_sizes, [False, True])
 
