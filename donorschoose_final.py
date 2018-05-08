@@ -270,7 +270,7 @@ def getData(training_set_total_aproved, training_set_total_reproved):
 # Trains using a WiSARD classifier
 # Using personal implementation, without bleaching
 def train(training_input, expected_output, tuple_size = 2, bleaching = False):
-    wann = Wisard(tuple_size, 3546)
+    wann = Wisard(tuple_size, 3546, bleaching)
     wann.train(training_input, expected_output)
     return wann
 
@@ -502,7 +502,7 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
     
 
 
-# In[7]:
+# In[ ]:
 
 
 tuple_sizes = [1, 2, 4, 5, 7, 10, 20, 25, 30, 50, 100]
