@@ -505,7 +505,7 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
 # In[ ]:
 
 
-tuple_sizes = [1, 2, 4, 5, 7, 10, 20, 25, 30, 50, 100]
+tuple_sizes = [1, 2, 4, 5, 7, 10, 20, 25, 30]
 training_set_distribuitions = [[10, 10], [20, 20], [30, 30], [50, 50], [75, 75], [86, 14]]
 
 experiment(training_set_distribuitions, tuple_sizes, [False, True])

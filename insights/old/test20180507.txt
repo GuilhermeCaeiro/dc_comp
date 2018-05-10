@@ -1,0 +1,84 @@
+
+Training with a training set distribution of  10 10  for approved and repproved, respectively.
+
+Total data:  182080
+Total aproved:  154346
+Total reproved:  27734
+Percent aproved:  0.8476823374340949
+Percent reproved:  0.15231766256590507 
+
+Distribution over a random sample of 10000 observations used to get the observations to train the classifier:  0.8492
+Total aproved in that sample:  8492 
+
+Total training data:  20
+Total aproved:  10
+Total reproved:  10
+Percent aproved:  0.5
+Percent reproved:  0.5 
+
+Total test data:  182060
+Total aproved:  154336
+Total reproved:  27724
+Percent aproved:  0.8477205316928486
+Percent reproved:  0.15227946830715144 
+
+Training set + test set:  182080
+Converting dataframe of shape  (20, 16)  to a list of binary values.
+Converting dataframe of shape  (182060, 16)  to a list of binary values.
+Training with a tupple of size:  1
+Bleaching is set to:  False 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 10
+Number of training samples for class 0: 10
+Number of observations:  20
+Predicted correctly:  15
+Predicted wrongly:  5
+Predicted zeros:  5
+Predicted ones:  15
+Zeros correct:  5
+Ones correct:  10
+Zeros wrong:  0
+Ones Wrong:  5
+In-sample performance:  0.75
+Ones distribution:  0.5
+Ones:  10 Zeros:  -10
+
+
+Number of observations:  182060
+Predicted correctly:  130377
+Predicted wrongly:  51683
+Predicted zeros:  33397
+Predicted ones:  148663
+Zeros correct:  4719
+Ones correct:  125658
+Zeros wrong:  28678
+Ones Wrong:  23005
+Expected out-sample performance:  0.7161210589915412
+Ones distribution:  0.8477205316928486
+Ones:  154336 Zeros:  -27724 
+
+
+10/10;1;False;20;15;0.75;10;10;5;1.0;10;5;0;0.5;182060;130377;0.7161210589915412;154336;125658;23005;0.8141846361185984;27724;4719;28678;0.1702135334006637;
+
+Bleaching is set to:  True 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+Number of training samples for class 1: 10
+Number of training samples for class 0: 10
+Number of observations:  20
+Predicted correctly:  15
+Predicted wrongly:  5
+Predicted zeros:  5
+Predicted ones:  15
+Zeros correct:  5
+Ones correct:  10
+Zeros wrong:  0
+Ones Wrong:  5
+In-sample performance:  0.75
+Ones distribution:  0.5
+Ones:  10 Zeros:  -10
+
+
