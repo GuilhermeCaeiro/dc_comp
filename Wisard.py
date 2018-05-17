@@ -32,6 +32,7 @@ class Discriminator:
             
     def evaluate(self, pattern, bleaching_threshold = 0):
         score = 0
+        evaluation_pattern = ""
 
         for i in range(self.number_of_rams):
             address = []
@@ -44,12 +45,17 @@ class Discriminator:
             if i in self.memory and address in self.memory[i]:
                 if self.bleaching and self.memory[i][address] >= bleaching_threshold:
                     score = score + 1
+                    evaluation_pattern = evaluation_pattern + "1"
                 elif self.bleaching and self.memory[i][address] < bleaching_threshold:
+                    evaluation_pattern = evaluation_pattern + "2"
                     continue
                 else:
+                    evaluation_pattern = evaluation_pattern + "3"
                     score = score + 1
+            else:
+                evaluation_pattern = evaluation_pattern + "4"
                 
-        return score 
+        return score, evaluation_pattern, address
 
 class Wisard:
 
@@ -92,11 +98,16 @@ class Wisard:
     def train(self, input_list, expected_output_list):
         input_classes = self.processInput("trainning", input_list, expected_output_list)
         number_of_classes = len(input_classes)
+        class_identifiers = list(input_classes.keys())
+        class_identifiers.sort() # sorts the classes
+        class_identifiers = class_identifiers[::-1] # reverses the classes' list
         
         print("Number of classes being trained: " + str(number_of_classes))
         print(input_classes.keys())
+        print(class_identifiers)
 
-        for input_class in input_classes:
+
+        for input_class in class_identifiers:
             print("Number of training samples for class " + str(input_class) + ": " + str(len(input_classes[input_class])))
 
             input_data_length = len(input_classes[input_class][0])
@@ -116,38 +127,59 @@ class Wisard:
         current_threshold = 0
 
         discriminators_to_evaluate = self.discriminators
+        previously_evaluated_discriminators = []
 
         while not result_achieved:
             predicted_classes = [{"discriminator": None, "score": 0}]
 
             for discriminator in discriminators_to_evaluate:
-                score = discriminator.evaluate(processed_input, current_threshold)
+                score, evaluation_pattern, address = discriminator.evaluate(processed_input, current_threshold)
+                last_score = score
 
-                if score > predicted_classes[0]["score"]:
+                if score > predicted_classes[0]["score"] or predicted_classes[0]["discriminator"] == None:
                     predicted_classes = [{"discriminator": discriminator, "score": score}]
                 elif score == predicted_classes[0]["score"]:
                     predicted_classes.append({"discriminator": discriminator, "score": score})
 
 
+            exit_condition = None
+
             if not self.bleaching:
+                exit_condition = 1
                 result_achieved = True
             elif self.bleaching and len(predicted_classes) > 1:
-                if predicted_classes[0]["score"] == 1:
+                exit_condition = 2
+                if predicted_classes[0]["score"] == 0:
                     result_achieved = True
+                else:
+                    current_threshold = current_threshold + 1
 
-                current_threshold = current_threshold + 1
-
-                discriminators_to_evaluate = []
-                for predicted_class in predicted_classes:
-                    discriminators_to_evaluate.append(predicted_class["discriminator"])
+                    previously_evaluated_discriminators = discriminators_to_evaluate
+                    discriminators_to_evaluate = []
+                    for predicted_class in predicted_classes:
+                        discriminators_to_evaluate.append(predicted_class["discriminator"])
 
             elif self.bleaching and len(predicted_classes) == 1:
+                exit_condition = 3
                 result_achieved = True
             else:
                 print("Error predicting class.")
                 break
 
+            #
+            #if predicted_classes[0]["discriminator"] is None or predicted_classes[0]["score"] is 0:
+            #    print("Last score: ", last_score)
+            #    print("Evaluation pattern: ", evaluation_pattern)
+            #    print("Last address: ", address)
+            #    print("Exit condition: ", exit_condition)
+            #    print("Discriminators: ", discriminators_to_evaluate)
+            #    print("Discriminators: ", previously_evaluated_discriminators)
+            #    print("Prediction failed (score equals 0). Picking the first discriminator's.")
+                
+
         # If the method ends with more than one class as possible, it just returns the first one
+        # TODO Change the following line to return a random classe if there is still a draw between
+        # two or more classes.
         return {"class": predicted_classes[0]["discriminator"].input_class, "score": predicted_classes[0]["score"]}
 
     def deactivate_bleaching(self):
