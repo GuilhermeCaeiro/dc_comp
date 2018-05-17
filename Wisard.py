@@ -177,8 +177,8 @@ class Wisard:
             #    print("Prediction failed (score equals 0). Picking the first discriminator's.")
                 
 
-        # If the method ends with more than one class as possible, it just returns the first one
-        # TODO Change the following line to return a random classe if there is still a draw between
+        # If the method ends with more than one class as possible, it just returns the first one.
+        # TODO: Change the following line to return a random classe if there is still a draw between
         # two or more classes.
         return {"class": predicted_classes[0]["discriminator"].input_class, "score": predicted_classes[0]["score"]}
 
