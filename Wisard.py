@@ -100,7 +100,7 @@ class Wisard:
         number_of_classes = len(input_classes)
         class_identifiers = list(input_classes.keys())
         class_identifiers.sort() # sorts the classes
-        class_identifiers = class_identifiers[::-1] # reverses the classes' list
+        #class_identifiers = class_identifiers[::-1] # reverses the classes' list
         
         print("Number of classes being trained: " + str(number_of_classes))
         print(input_classes.keys())
