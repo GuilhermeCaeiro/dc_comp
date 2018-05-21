@@ -319,8 +319,9 @@ def splitData(train_data, resources_data, training_set_total_aproved, training_s
     print("Percent aproved: ", float(train_data["project_is_approved"].sum()) / float(len(train_data)))
     print("Percent reproved: ", 1.0 - (float(train_data["project_is_approved"].sum()) / float(len(train_data))), "\n")
 
-    train = train_data.sample(n=10000,random_state=200)
-    print("Distribution over a random sample of 10000 observations used to get the observations to train the classifier: ",
+    #train = train_data.sample(n=10000,random_state=200)
+    train = train_data.sample(frac=1,random_state=200)
+    print("Distribution over a random sample of 182080 observations used to get the observations to train the classifier: ",
           float(train["project_is_approved"].sum()) / float(len(train["project_is_approved"])))
     print("Total aproved in that sample: ", train["project_is_approved"].sum(), "\n")
     
@@ -386,8 +387,13 @@ def evaluate_performance(wann, test_data_combined):
     ones_correct = 0
     zeros_wrong = 0
     ones_wrong = 0
+    total_ties = 0
+    ones_total_ties = 0
+    zeros_total_ties = 0
+    avg_time = time.time()
+    
     for combined in test_data_combined:
-        prediction = wann.predict(combined[0])
+        prediction, tie = wann.predict(combined[0])
         prediction = prediction["class"]
         
         if prediction == "0":
@@ -396,6 +402,7 @@ def evaluate_performance(wann, test_data_combined):
         elif prediction == "1":
             ones_predicted = ones_predicted + 1
         #print(prediction)
+        
         expected = combined[1]
         #print(prediction, expected)
         if prediction == expected:
@@ -413,6 +420,15 @@ def evaluate_performance(wann, test_data_combined):
                 zeros_wrong = zeros_wrong + 1
             elif prediction == "1":
                 ones_wrong = ones_wrong + 1
+                
+        if tie:
+            total_ties = total_ties + 1
+            if expected == "0":
+                zeros_total_ties = zeros_total_ties + 1
+            elif expected == "1":
+                ones_total_ties = ones_total_ties + 1
+                
+    avg_time = float(time.time() - avg_time) / float(len(test_data_combined)) 
     
     print("Number of observations: ", len(test_data_combined))
     print("Predicted correctly: ", correct_predictions)
@@ -423,9 +439,14 @@ def evaluate_performance(wann, test_data_combined):
     print("Ones correct: ", ones_correct)
     print("Zeros wrong: ", zeros_wrong)
     print("Ones Wrong: ", ones_wrong)
+    print("Total ties: ", total_ties)
+    print("Zeros total ties: ", zeros_total_ties)
+    print("Ones total ties: ", ones_total_ties)
+    print("Avg. Time: ", avg_time, " seconds.")
     return correct_predictions, [
         len(test_data_combined), correct_predictions, wrong_predictions, zeros_predicted, ones_predicted,
-        zeros_correct, ones_correct, zeros_wrong, ones_wrong
+        zeros_correct, ones_correct, zeros_wrong, ones_wrong, total_ties, zeros_total_ties, ones_total_ties,
+        avg_time
     ]
 
 #Evaluates Firminos's wisard implementation
@@ -439,6 +460,8 @@ def evaluate_performance2(w, test_data_combined):
     ones_correct = 0
     zeros_wrong = 0
     ones_wrong = 0
+    avg_time = time.time()
+    
     for combined in test_data_combined:
         prediction = w.predict([combined[0]])
         if prediction[0] == "0":
@@ -464,6 +487,8 @@ def evaluate_performance2(w, test_data_combined):
                 zeros_wrong = zeros_wrong + 1
             elif prediction[0] == "1":
                 ones_wrong = ones_wrong + 1
+                
+    avg_time = float(time.time() - avg_time) / float(len(test_data_combined)) 
     
     print("Number of observations: ", len(test_data_combined))
     print("Predicted correctly: ", correct_predictions)
@@ -474,9 +499,10 @@ def evaluate_performance2(w, test_data_combined):
     print("Ones correct: ", ones_correct)
     print("Zeros wrong: ", zeros_wrong)
     print("Ones Wrong: ", ones_wrong)
+    print("Avg. Time: ", avg_time, " seconds.")
     return correct_predictions, [
         len(test_data_combined), correct_predictions, wrong_predictions, zeros_predicted, ones_predicted,
-        zeros_correct, ones_correct, zeros_wrong, ones_wrong
+        zeros_correct, ones_correct, zeros_wrong, ones_wrong, avg_time
     ]
 
 
@@ -486,13 +512,13 @@ def evaluate_performance2(w, test_data_combined):
 def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False]):
     output_file = "insights/results_experiment" + datetime.now().strftime('%Y%m%d%H%M%S') + ".csv"
     file = open(output_file, "w")
-    file.write("data_distribution;tuple_size;bleaching_active;total_training_data;total_correct_training;" +
+    file.write("data_distribution;tuple_size;bleaching_active;total_training_time;avg_in_sample_evaluation_time;total_in_sample_evaluation_time;avg_out_sample_evaluation_time;total_out_sample_evaluation_time;total_training_data;total_correct_training;" +
                "percent_correct_training;total_approved_training;correctly_approved_training;wrongly_approved_training;" +
                "percent_approved_correctly_training;total_reproved_training;correctly_reproved_training;" +
                "wrongly_reproved_training;percent_reproved_correctly_training;total_test_data;total_correct_test;" +
                "percent_correct_test;total_approved_test;correctly_approved_test;wrongly_approved_test;" +
                "percent_approved_correctly_test;total_reproved_test;correctly_reproved_test;" +
-               "wrongly_reproved_test;percent_reproved_correctly_test;\n"
+               "wrongly_reproved_test;percent_reproved_correctly_test;total_ties;ties_for_zeros;ties_for_ones\n"
               )
     file.close()
     
@@ -509,9 +535,13 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
             for bleaching in bleaching_mode:
                 print("Bleaching is set to: ", bleaching, "\n")
 
+                training_time = time.time()
                 wann = train(training_input, expected_output, a_tuple_size, bleaching)
-
+                training_time = time.time() - training_time
+                
+                in_sample_evaluation_time = time.time()
                 in_sample_performance, in_sample_additional_info =  evaluate_performance(wann, training_combined)
+                in_sample_evaluation_time = time.time() - in_sample_evaluation_time
                 
                 # Evaluates Guilherme's wisard implementation
                 print("In-sample performance: ", float(in_sample_performance) / float(len(training_combined)))
@@ -519,7 +549,9 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
                 print("Ones: ", training_set["project_is_approved"].sum(), "Zeros: ", training_set["project_is_approved"].sum() - len(training_set["project_is_approved"]))
                 print("\n")
                 
+                out_sample_evaluation_time = time.time()
                 out_sample_performance, out_sample_additional_info =  evaluate_performance(wann, test_combined)
+                out_sample_evaluation_time = time.time() - out_sample_evaluation_time
                 
                 print("Expected out-sample performance: ", float(out_sample_performance) / float(len(test_combined)))
                 print("Ones distribution: ", float(test_set["project_is_approved"].sum()) / float(len(test_set["project_is_approved"])))
@@ -533,6 +565,16 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
                     str(a_tuple_size) + ";",
                     # bleaching active or not
                     str(bleaching) + ";",
+                    # training time in seconds
+                    str(training_time) + ";",
+                    # in sample pattern average evaluation time in seconds
+                    str(in_sample_additional_info[12]) + ";",
+                    # in sample total evaluation time in seconds
+                    str(in_sample_evaluation_time) + ";",
+                    # out sample pattern average evaluation time in seconds
+                    str(out_sample_additional_info[12]) + ";",
+                    # out sample total evaluation time in seconds
+                    str(out_sample_evaluation_time) + ";",
                     
                     # total traning observations
                     str(training_set_distribuition[0] + training_set_distribuition[1]) + ";",
@@ -581,6 +623,13 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
                     # percentage of reproved projects predicted correctly in the training dataset
                     str(float(out_sample_additional_info[5]) / float((test_set["project_is_approved"].sum() - len(test_set["project_is_approved"])) * -1)) + ";",
                     
+                    # total ties
+                    str(out_sample_additional_info[9]) + ";",
+                    # total ties when prediction should have been zero
+                    str(out_sample_additional_info[10]) + ";",
+                    # total ties when prediction should have been one
+                    str(out_sample_additional_info[11]) + ";",
+                    
                     "\n",
                     #str() + ";",
                 ]
@@ -599,12 +648,13 @@ def experiment(training_set_distribuitions, tuple_sizes, bleaching_mode = [False
     
 
 
-# In[7]:
+# In[ ]:
 
 
-tuple_sizes = [1, 2, 4, 5, 7, 10, 20, 25, 30, 50, 100]
-#tuple_sizes = [20]
-training_set_distribuitions = [[5, 5], [10, 10], [20, 20], [30, 30], [50, 50], [75, 75], [86, 14]]
+tuple_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 50, 100]
+#tuple_sizes = [2]
+training_set_distribuitions = [[5, 5], [10, 10], [20, 20], [30, 30], [50, 50], [75, 75], [86, 14], [100, 100]]
+#training_set_distribuitions = [[100, 100]]
 
 experiment(training_set_distribuitions, tuple_sizes, [False, True])
 
