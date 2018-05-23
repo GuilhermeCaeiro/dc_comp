@@ -1,0 +1,367 @@
+
+Training with a training set distribution of  500 500  for approved and repproved, respectively.
+
+Training with a tupple of size:  2
+Bleaching is set to:  False 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  901
+Predicted wrongly:  99
+Predicted zeros:  599
+Predicted ones:  401
+Zeros correct:  500
+Ones correct:  401
+Zeros wrong:  99
+Ones Wrong:  0
+Total ties:  277
+Zeros total ties:  178
+Ones total ties:  99
+Avg. Time:  0.019476810932159423  seconds.
+In-sample performance:  0.901
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  2644
+Predicted wrongly:  3281
+Predicted zeros:  3420
+Predicted ones:  2505
+Zeros correct:  343
+Ones correct:  2301
+Zeros wrong:  3077
+Ones Wrong:  204
+Total ties:  1914
+Zeros total ties:  197
+Ones total ties:  1717
+Avg. Time:  0.018981620370084225  seconds.
+Expected out-sample performance:  0.44624472573839663
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;2;False;11.709510564804077;0.019476810932159423;19.48046588897705;0.018981620370084225;112.46723580360413;1000;901;0.901;500;401;0;0.802;500;500;99;1.0;5925;2644;0.44624472573839663;5378;2301;204;0.42785422089996283;547;343;3077;0.6270566727605119;1914;197;1717;
+
+Bleaching is set to:  True 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  939
+Predicted wrongly:  61
+Predicted zeros:  485
+Predicted ones:  515
+Zeros correct:  462
+Ones correct:  477
+Zeros wrong:  23
+Ones Wrong:  38
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.026435975790023804  seconds.
+In-sample performance:  0.939
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  3494
+Predicted wrongly:  2431
+Predicted zeros:  2400
+Predicted ones:  3525
+Zeros correct:  258
+Ones correct:  3236
+Zeros wrong:  2142
+Ones Wrong:  289
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.027524961157690122  seconds.
+Expected out-sample performance:  0.589704641350211
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;2;True;11.099490404129028;0.026435975790023804;26.43661093711853;0.027524961157690122;163.08598065376282;1000;939;0.939;500;477;38;0.954;500;462;23;0.924;5925;3494;0.589704641350211;5378;3236;289;0.6017106731126813;547;258;2142;0.4716636197440585;0;0;0;
+
+Training with a tupple of size:  5
+Bleaching is set to:  False 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  956
+Predicted wrongly:  44
+Predicted zeros:  544
+Predicted ones:  456
+Zeros correct:  500
+Ones correct:  456
+Zeros wrong:  44
+Ones Wrong:  0
+Total ties:  135
+Zeros total ties:  91
+Ones total ties:  44
+Avg. Time:  0.012872545480728149  seconds.
+In-sample performance:  0.956
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  2833
+Predicted wrongly:  3092
+Predicted zeros:  3191
+Predicted ones:  2734
+Zeros correct:  323
+Ones correct:  2510
+Zeros wrong:  2868
+Ones Wrong:  224
+Total ties:  1565
+Zeros total ties:  163
+Ones total ties:  1402
+Avg. Time:  0.013081309322566423  seconds.
+Expected out-sample performance:  0.4781434599156118
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;5;False;8.406217813491821;0.012872545480728149;12.873421430587769;0.013081309322566423;77.50738835334778;1000;956;0.956;500;456;0;0.912;500;500;44;1.0;5925;2833;0.4781434599156118;5378;2510;224;0.46671625139457046;547;323;2868;0.5904936014625228;1565;163;1402;
+
+Bleaching is set to:  True 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  967
+Predicted wrongly:  33
+Predicted zeros:  483
+Predicted ones:  517
+Zeros correct:  475
+Ones correct:  492
+Zeros wrong:  8
+Ones Wrong:  25
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.015556720972061157  seconds.
+In-sample performance:  0.967
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  3562
+Predicted wrongly:  2363
+Predicted zeros:  2314
+Predicted ones:  3611
+Zeros correct:  249
+Ones correct:  3313
+Zeros wrong:  2065
+Ones Wrong:  298
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.017071022242936405  seconds.
+Expected out-sample performance:  0.6011814345991561
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;5;True;8.462363958358765;0.015556720972061157;15.55768346786499;0.017071022242936405;101.14675283432007;1000;967;0.967;500;492;25;0.984;500;475;8;0.95;5925;3562;0.6011814345991561;5378;3313;298;0.6160282632949051;547;249;2065;0.45521023765996343;0;0;0;
+
+Training with a tupple of size:  8
+Bleaching is set to:  False 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  981
+Predicted wrongly:  19
+Predicted zeros:  519
+Predicted ones:  481
+Zeros correct:  500
+Ones correct:  481
+Zeros wrong:  19
+Ones Wrong:  0
+Total ties:  68
+Zeros total ties:  49
+Ones total ties:  19
+Avg. Time:  0.010516342639923095  seconds.
+In-sample performance:  0.981
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  2835
+Predicted wrongly:  3090
+Predicted zeros:  3175
+Predicted ones:  2750
+Zeros correct:  316
+Ones correct:  2519
+Zeros wrong:  2859
+Ones Wrong:  231
+Total ties:  1353
+Zeros total ties:  140
+Ones total ties:  1213
+Avg. Time:  0.010549852153922939  seconds.
+Expected out-sample performance:  0.47848101265822784
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;8;False;7.664226055145264;0.010516342639923095;10.51694107055664;0.010549852153922939;62.50845146179199;1000;981;0.981;500;481;0;0.962;500;500;19;1.0;5925;2835;0.47848101265822784;5378;2519;231;0.46838973596132394;547;316;2859;0.5776965265082267;1353;140;1213;
+
+Bleaching is set to:  True 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  985
+Predicted wrongly:  15
+Predicted zeros:  491
+Predicted ones:  509
+Zeros correct:  488
+Ones correct:  497
+Zeros wrong:  3
+Ones Wrong:  12
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.011449289083480835  seconds.
+In-sample performance:  0.985
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  3445
+Predicted wrongly:  2480
+Predicted zeros:  2405
+Predicted ones:  3520
+Zeros correct:  236
+Ones correct:  3209
+Zeros wrong:  2169
+Ones Wrong:  311
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.013242851369994603  seconds.
+Expected out-sample performance:  0.5814345991561182
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;8;True;7.9059059619903564;0.011449289083480835;11.449939727783203;0.013242851369994603;78.46453857421875;1000;985;0.985;500;497;12;0.994;500;488;3;0.976;5925;3445;0.5814345991561182;5378;3209;311;0.596690219412421;547;236;2169;0.43144424131627057;0;0;0;
+
+Training with a tupple of size:  10
+Bleaching is set to:  False 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  991
+Predicted wrongly:  9
+Predicted zeros:  509
+Predicted ones:  491
+Zeros correct:  500
+Ones correct:  491
+Zeros wrong:  9
+Ones Wrong:  0
+Total ties:  38
+Zeros total ties:  29
+Ones total ties:  9
+Avg. Time:  0.010290234088897706  seconds.
+In-sample performance:  0.991
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  2852
+Predicted wrongly:  3073
+Predicted zeros:  3190
+Predicted ones:  2735
+Zeros correct:  332
+Ones correct:  2520
+Zeros wrong:  2858
+Ones Wrong:  215
+Total ties:  1273
+Zeros total ties:  120
+Ones total ties:  1153
+Avg. Time:  0.01038659413655599  seconds.
+Expected out-sample performance:  0.48135021097046415
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;10;False;7.6889073848724365;0.010290234088897706;10.291207313537598;0.01038659413655599;61.54158139228821;1000;991;0.991;500;491;0;0.982;500;500;9;1.0;5925;2852;0.48135021097046415;5378;2520;215;0.46857567869096317;547;332;2858;0.6069469835466179;1273;120;1153;
+
+Bleaching is set to:  True 
+
+Number of classes being trained: 2
+dict_keys(['1', '0'])
+['0', '1']
+Number of training samples for class 0: 500
+Number of training samples for class 1: 500
+Number of observations:  1000
+Predicted correctly:  993
+Predicted wrongly:  7
+Predicted zeros:  497
+Predicted ones:  503
+Zeros correct:  495
+Ones correct:  498
+Zeros wrong:  2
+Ones Wrong:  5
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.010760668516159057  seconds.
+In-sample performance:  0.993
+Ones distribution:  0.5
+Ones:  500 Zeros:  -500
+
+
+Number of observations:  5925
+Predicted correctly:  3468
+Predicted wrongly:  2457
+Predicted zeros:  2464
+Predicted ones:  3461
+Zeros correct:  277
+Ones correct:  3191
+Zeros wrong:  2187
+Ones Wrong:  270
+Total ties:  0
+Zeros total ties:  0
+Ones total ties:  0
+Avg. Time:  0.012666280682076885  seconds.
+Expected out-sample performance:  0.5853164556962025
+Ones distribution:  0.9076793248945147
+Ones:  5378 Zeros:  -547 
+
+
+500/500;10;True;7.698706150054932;0.010760668516159057;10.76150894165039;0.012666280682076885;75.0492672920227;1000;993;0.993;500;498;5;0.996;500;495;2;0.99;5925;3468;0.5853164556962025;5378;3191;270;0.5933432502789141;547;277;2187;0.506398537477148;0;0;0;
+
